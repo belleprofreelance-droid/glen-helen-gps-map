@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Glen Helen Personal GPS Map</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>Glen Helen GPS Map</h1>
+      <p class="subtitle">Personal-use KMZ-based field map</p>
+    </div>
+    <div class="status-pill" id="gpsStatus">GPS off</div>
+  </header>
+
+  <main class="app-shell">
+    <section class="map-panel">
+      <div class="map-toolbar">
+        <button id="startGpsBtn">Start GPS</button>
+        <button id="stopGpsBtn" class="secondary">Stop</button>
+        <button id="centerBtn" class="secondary">Center</button>
+        <button id="resetViewBtn" class="secondary">Reset view</button>
+      </div>
+
+      <div class="map-frame" id="mapFrame">
+        <div class="map-stage" id="mapStage">
+          <img id="mapImage" alt="Glen Helen trail map" draggable="false" />
+          <div id="accuracyCircle" class="accuracy-circle hidden"></div>
+          <div id="locationDot" class="location-dot hidden" aria-label="Current GPS location"></div>
+          <div id="selectedPoint" class="selected-point hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="info-panel">
+      <section class="card warning-card">
+        <h2>Source-of-truth warning</h2>
+        <p>This map uses the KMZ GroundOverlay as its starting georeference. It is not field-calibrated yet.</p>
+        <p><strong>Do not add guessed GPS points.</strong></p>
+      </section>
+
+      <section class="card">
+        <h2>GPS readout</h2>
+        <dl class="readout">
+          <div><dt>Latitude</dt><dd id="latReadout">—</dd></div>
+          <div><dt>Longitude</dt><dd id="lngReadout">—</dd></div>
+          <div><dt>Accuracy</dt><dd id="accuracyReadout">—</dd></div>
+          <div><dt>Map X/Y</dt><dd id="xyReadout">—</dd></div>
+          <div><dt>Map status</dt><dd id="mapStatusReadout">—</dd></div>
+        </dl>
+      </section>
+
+      <section class="card">
+        <h2>Calibration capture</h2>
+        <p class="small">Tap a known point on the map, then stand at that exact location and save the GPS reading.</p>
+        <div class="calibration-row">
+          <span>Selected pixel:</span>
+          <strong id="selectedPixelReadout">None</strong>
+        </div>
+        <button id="saveCalibrationBtn" class="full-width">Save current GPS as calibration point</button>
+        <button id="exportCalibrationBtn" class="secondary full-width">Export calibration JSON</button>
+        <p class="small muted">Field calibration data stays local in this browser until exported.</p>
+      </section>
+
+      <section class="card">
+        <h2>Known landmarks</h2>
+        <p class="small muted">Listed for field reference only. GPS coordinates are not verified.</p>
+        <ul id="landmarkList" class="landmark-list"></ul>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="app-footer">
+    <span id="configSummary">Loading map config…</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
