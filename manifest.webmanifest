@@ -1,0 +1,9 @@
+{
+  "name": "Glen Helen Personal GPS Map",
+  "short_name": "Glen GPS Map",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b120e",
+  "theme_color": "#102d1f",
+  "icons": []
+}
