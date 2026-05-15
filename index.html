@@ -14,7 +14,10 @@
       <h1>Glen Helen GPS Map</h1>
       <p id="statusLine">Starter build — KMZ alignment not field verified</p>
     </div>
-    <button id="panelToggle" class="small-button" type="button">Panel</button>
+    <div class="topbar-actions">
+      <span id="offlineStatus" class="status-pill">Online</span>
+      <button id="panelToggle" class="small-button" type="button">Panel</button>
+    </div>
   </header>
 
   <main id="app">
@@ -22,6 +25,7 @@
       <div id="mapStage">
         <img id="mapImage" alt="Glen Helen trail map" draggable="false" />
         <div id="accuracyCircle" class="accuracy-circle" hidden></div>
+        <div id="selectedPointMarker" class="selected-marker" hidden aria-label="Selected calibration point"></div>
         <div id="youDot" class="you-dot" hidden>
           <span class="pulse"></span>
         </div>
@@ -40,6 +44,8 @@
           <span>Latitude</span><strong id="latOut">—</strong>
           <span>Longitude</span><strong id="lngOut">—</strong>
           <span>Accuracy</span><strong id="accOut">—</strong>
+          <span>Quality</span><strong id="gpsQualityOut">—</strong>
+          <span>GPS age</span><strong id="gpsAgeOut">—</strong>
           <span>Map X/Y</span><strong id="xyOut">—</strong>
         </div>
         <p class="warning" id="mapWarning" hidden>Outside the current mapped image area or transform is uncertain.</p>
@@ -51,29 +57,54 @@
           <button id="zoomIn" type="button">Zoom +</button>
           <button id="zoomOut" type="button">Zoom −</button>
           <button id="resetView" type="button">Reset</button>
+          <button id="recenterMap" type="button">Center Map</button>
           <button id="followMe" type="button">Follow: Off</button>
         </div>
+        <div class="readout-grid compact">
+          <span>Zoom</span><strong id="zoomOutLabel">—</strong>
+        </div>
+        <p class="small">Phone gestures: one finger pans, two fingers pinch-zoom, quick tap selects a calibration point.</p>
       </div>
 
       <div class="panel-section">
         <h2>Calibration capture</h2>
-        <p class="small">Tap a known point on the map, then save it with the current GPS reading. Export JSON after collecting points.</p>
+        <p class="small">Tap a known point on the map, then save it with the current GPS reading. Export or copy JSON after collecting points.</p>
         <label>
           Point name
-          <input id="pointName" type="text" placeholder="Example: Main Entrance" />
+          <input id="pointName" type="text" placeholder="Example: Main Entrance sign" />
         </label>
         <label>
           Notes
-          <textarea id="pointNotes" rows="2" placeholder="Exact spot, sign, bridge, parking line, etc."></textarea>
+          <textarea id="pointNotes" rows="2" placeholder="Exact spot, sign, bridge, trail junction, parking line, etc."></textarea>
         </label>
         <div class="readout-grid">
           <span>Selected map point</span><strong id="selectedPointOut">—</strong>
           <span>Saved points</span><strong id="savedCountOut">0</strong>
+          <span>Last saved</span><strong id="lastSavedOut">—</strong>
         </div>
         <div class="button-row wrap">
-          <button id="savePoint" type="button">Save Point</button>
+          <button id="savePoint" type="button" disabled>Save Point</button>
           <button id="exportPoints" type="button">Export JSON</button>
+          <button id="copyPoints" type="button">Copy JSON</button>
           <button id="clearPoints" type="button">Clear Local Points</button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h2>Field mode</h2>
+        <div class="button-row wrap">
+          <button id="wakeLock" type="button">Keep screen awake</button>
+          <button id="fieldChecklistToggle" type="button">Show checklist</button>
+        </div>
+        <div id="fieldChecklist" class="checklist" hidden>
+          <ol>
+            <li>Open this app once before leaving home so the map image gets cached.</li>
+            <li>At Glen Helen, wait for GPS accuracy to settle before saving points.</li>
+            <li>Prefer fixed landmarks: signs, bridges, trail junctions, building corners, parking edges.</li>
+            <li>Collect at least 6–10 spread-out points. Avoid saving several points clustered in one area.</li>
+            <li>Use notes that describe the exact physical spot you stood on.</li>
+            <li>Export or copy JSON before clearing browser storage.</li>
+          </ol>
         </div>
       </div>
 
