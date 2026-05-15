@@ -1,0 +1,38 @@
+{
+  "appName": "Glen Helen Personal GPS Map",
+  "mapName": "Glen Helen Nature Preserve Trail Map",
+  "version": "0.1.0",
+  "status": "starter_kmz_georeference_not_field_verified",
+  "mapImage": "assets/map/glen-helen-map-web.jpg",
+  "imageWidthPx": 3311,
+  "imageHeightPx": 5117,
+  "georeferenceSource": {
+    "type": "Google Earth KMZ GroundOverlay LatLonBox",
+    "sourceFile": "03_extracted_kmz_data/extracted-overlay.kml",
+    "north": 39.80988866453237,
+    "south": 39.78066764127846,
+    "east": -83.86755754810133,
+    "west": -83.8915537305105,
+    "rotationDegrees": 1.617687582969666,
+    "notes": "Initial georeference only. Requires field calibration points before relying on trail-level accuracy."
+  },
+  "derived": {
+    "centerLat": 39.79527815290542,
+    "centerLng": -83.87955563930592,
+    "approxWidthMeters": 2052.42,
+    "approxHeightMeters": 3252.88
+  },
+  "transform": {
+    "mode": "kmz_latlonbox_with_rotation",
+    "rotationMultiplier": 1,
+    "calibrationStatus": "none",
+    "warning": "Rotation direction may need confirmation against field control points. Do not invent points."
+  },
+  "ui": {
+    "defaultZoom": 0.22,
+    "minZoom": 0.08,
+    "maxZoom": 4,
+    "showAccuracyCircle": true,
+    "showOutsideMapWarning": true
+  }
+}
