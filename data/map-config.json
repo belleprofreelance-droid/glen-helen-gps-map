@@ -1,7 +1,7 @@
 {
   "appName": "Glen Helen Personal GPS Map",
   "mapName": "Glen Helen Nature Preserve Trail Map",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "status": "starter_kmz_georeference_not_field_verified",
   "mapImage": "assets/map/glen-helen-map-web.jpg",
   "imageWidthPx": 3311,
@@ -31,7 +31,7 @@
   "ui": {
     "defaultZoom": 0.22,
     "minZoom": 0.08,
-    "maxZoom": 4,
+    "maxZoom": 6,
     "showAccuracyCircle": true,
     "showOutsideMapWarning": true
   }
